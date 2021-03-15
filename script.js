@@ -36,7 +36,33 @@ define(['jquery', 'underscore', 'twigjs'], function ($, _, Twig) {
                 if(number == number1) {
                   console.log(" получаем контакт id " + data._embedded.contacts[i].id);
                   let $id = data._embedded.contacts[i].id;
-                  $("#card_delete").click();
+                  let $field_id = data._embedded.contacts[i].field_id;
+                  let data =
+                    [
+                        {
+                          "id": $id,
+                          "first_name": "Иван",
+                          "last_name": "Иванов",
+                          "custom_fields_values": [
+                            {
+                              "field_id": $field_id,
+                              "field_name": "Телефон",
+                              "values": [
+                                {
+                                  "value": "79999999999",
+                                  "enum_code": "WORK"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                        ]
+                  $.ajax({
+                    url: "/api/v4/contacts/"+$id+"",
+                    type: 'PATCH ',
+                    data: data, // можно строкой, а можно, например, так: $('input[type="text"], input[type="radio"]:checked, input[type="checkbox"]:checked, select, textarea')
+                    dataType: 'json',
+                  });
                   // $.get("/api/v4/contacts/"+$id+"", function( data ) {
                   //   $( ".delete" ).html( data );
                   //   console.log("Deleted");
