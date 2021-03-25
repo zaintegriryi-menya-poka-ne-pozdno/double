@@ -20,68 +20,117 @@ define(['jquery', 'underscore', 'twigjs'], function ($, _, Twig) {
         return true;
       },
       init: _.bind(function () {
-        $.get( "/api/v4/contacts", function( data ) {
-          $( ".result" ).html( data );
-          console.log(data);
-          // console.log(data._embedded.contacts[0].name);
-          for (j = 0; j < data._embedded.contacts.length; j++) {
-            for (i = 0; i < data._embedded.contacts.length; i++) {
-              if ((data._embedded.contacts[i].custom_fields_values != null) && (data._embedded.contacts[j].custom_fields_values != null) && (j != i)) {
-                let number = (data._embedded.contacts[j].custom_fields_values[0].values[0].value).replace(/\D+/g,"").slice(1);
-                let number1 = (data._embedded.contacts[i].custom_fields_values[0].values[0].value).replace(/\D+/g,"").slice(1);
-                // let number2 = number.replace(/\D+/g,""); // удалям все кроме цифры
-                // console.log(number1.slice(1));   // удаляем первый элемент 7 или 8
-                console.log(number);
-                console.log(number1);
-                if(number == number1) {
-                  console.log(" получаем контакт id " + data._embedded.contacts[i].id);
-                  let $id = data._embedded.contacts[i].id;
-                  let $field_id = data._embedded.contacts[i].field_id;
-                  let data =
-                    [
-                        {
-                          "id": $id,
-                          "first_name": "Иван",
-                          "last_name": "Иванов",
-                          "custom_fields_values": [
-                            {
-                              "field_id": $field_id,
-                              "field_name": "Телефон",
-                              "values": [
-                                {
-                                  "value": "79999999999",
-                                  "enum_code": "WORK"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                        ]
-                  $.ajax({
-                    url: "/api/v4/contacts/"+$id+"",
-                    type: 'PATCH ',
-                    data: data, // можно строкой, а можно, например, так: $('input[type="text"], input[type="radio"]:checked, input[type="checkbox"]:checked, select, textarea')
-                    dataType: 'json',
-                  });
-                  // $.get("/api/v4/contacts/"+$id+"", function( data ) {
-                  //   $( ".delete" ).html( data );
-                  //   console.log("Deleted");
-                  // });
-                  // console.log("number == number1");
-                  // console.log(data._embedded.contacts[i].custom_fields_values[0].values[0].value);
-                  // console.log(data._embedded.contacts[i].custom_fields_values[1].values[0].value);
-                }
-              } else {
-                console.log("null");
-              }
-              console.log("------");
-            }
+        // /leads?page=2&limit=250
+        let $allLeadsXolodka = [];
+        let $allLeadsBD = [];
+        let $count = 0;
+        $.when($.get( "/api/v4/leads?page=1&limit=250&filter[pipeline_id]=4053727&filter[statuses]=38437138"),
+            $.get( "/api/v4/leads?page=2&limit=250&filter[pipeline_id]=4053727&filter[statuses]=38437138"),
+            $.get( "/api/v4/leads?page=3&limit=250&filter[pipeline_id]=4053727&filter[statuses]=38437138"),
+            $.get( "/api/v4/leads?page=4&limit=250&filter[pipeline_id]=4053727&filter[statuses]=38437138"),
+            $.get( "/api/v4/leads?page=5&limit=250&filter[pipeline_id]=4053727&filter[statuses]=38437138"),
+            $.get( "/api/v4/leads?page=6&limit=250&filter[pipeline_id]=4053727&filter[statuses]=38437138"),
+        ).done(function(data1,  data2, data3,data4,  data5, data6) {
+          for($i=0; $i<data1[0]._embedded.leads.length; $i++ ) {
+              $allLeadsXolodka.push( data1[0]._embedded.leads[$i]);
           }
+          for($i=0; $i<data2[0]._embedded.leads.length; $i++ ) {
+            $allLeadsXolodka.push( data2[0]._embedded.leads[$i]);
+          }
+          for($i=0; $i<data3[0]._embedded.leads.length; $i++ ) {
+            $allLeadsXolodka.push( data3[0]._embedded.leads[$i]);
+          }
+          for($i=0; $i<data4[0]._embedded.leads.length; $i++ ) {
+            $allLeadsXolodka.push( data4[0]._embedded.leads[$i]);
+          }
+          for($i=0; $i<data5[0]._embedded.leads.length; $i++ ) {
+            $allLeadsXolodka.push( data5[0]._embedded.leads[$i]);
+          }
+          for($i=0; $i<data6[0]._embedded.leads.length; $i++ ) {
+            $allLeadsXolodka.push( data6[0]._embedded.leads[$i]);
+          }
+          // $allLeadsXolodka.length
+        });
+        $.when($.get("/api/v4/leads?page=1&limit=250&filter[pipeline_id]=2279392"),
+            $.get("/api/v4/leads?page=2&limit=250&filter[pipeline_id]=2279392"),
+            $.get("/api/v4/leads?page=3&limit=250&filter[pipeline_id]=2279392"),
+            $.get("/api/v4/leads?page=4&limit=250&filter[pipeline_id]=2279392"),
+            $.get("/api/v4/leads?page=1&limit=250&filter[pipeline_id]=2279395"),
+            $.get("/api/v4/leads?page=2&limit=250&filter[pipeline_id]=2279395"),
+            $.get("/api/v4/leads?page=3&limit=250&filter[pipeline_id]=2279395"),
+            $.get("/api/v4/leads?page=4&limit=250&filter[pipeline_id]=2279395"),
+        ).done(function (data1bd, data2bd, data3bd, data4bd, data5bd, data6bd, data7bd, data8bd) {
+          for ($i = 0; $i < data1bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data1bd[0]._embedded.leads[$i]);
+          }
+          for ($i = 0; $i < data2bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data2bd[0]._embedded.leads[$i]);
+          }
+          for ($i = 0; $i < data3bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data3bd[0]._embedded.leads[$i]);
+          }
+          for ($i = 0; $i < data4bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data4bd[0]._embedded.leads[$i]);
+          }
+          for ($i = 0; $i < data5bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data5bd[0]._embedded.leads[$i]);
+          }
+          for ($i = 0; $i < data6bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data6bd[0]._embedded.leads[$i]);
+          }
+          for ($i = 0; $i < data7bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data7bd[0]._embedded.leads[$i]);
+          }
+          for ($i = 0; $i < data8bd[0]._embedded.leads.length; $i++) {
+            $allLeadsBD.push(data8bd[0]._embedded.leads[$i]);
+          }
+          checkNomerXolodka($allLeadsXolodka,$allLeadsBD);
         });
 
-
+        function checkNomerXolodka($allLeadsXolodka,$allLeadsBD) {
+          console.log("Это checkNomerBD");
+          console.log($allLeadsXolodka.length);
+          console.log($allLeadsXolodka);
+          for ($i = 0; $i < 20; $i++) {
+            if (($allLeadsXolodka[$i]._embedded.companies.length != "0") || ($allLeadsXolodka[$i]._embedded.companies.length != " ")) {
+              $idcompaniesxolodka = $allLeadsXolodka[$i]._embedded.companies[0].id;
+              $.get("/api/v4/companies/" + $idcompaniesxolodka + "").done(function (data) {
+                $kolnomercompanies = data.custom_fields_values[0].values.length;
+                for ($j = 0; $j < $kolnomercompanies; $j++) {
+                  $telcompaniesxolodka = ((data.custom_fields_values[0].values[$j].value).replace(/^[0-9]+\.[0-9]$/i)).substr(1);
+                  console.log($telcompaniesxolodka);
+                  checkNomerBD($telcompaniesxolodka, $idcompaniesxolodka,$allLeadsBD);
+                }
+              });
+            }
+          }
+        };
+        function checkNomerBD($telcompaniesxolodka,$idcompaniesxolodka,$allLeadsBD){
+          for ($i = 0; $i < 20; $i++) {
+            console.log($allLeadsBD[$i]._embedded);
+            if (($allLeadsBD[$i]._embedded.companies.length != "0") || ($allLeadsBD[$i]._embedded.companies.length != " ")) {
+              $idcompaniesBD = $allLeadsBD[$i]._embedded.companies[0].id;
+              console.log($idcompaniesBD);
+              $.get("/api/v4/companies/" + $idcompaniesBD + "").done(function (databd) {
+                console.log(databd);
+                $kolnomercompaniesBD = databd.custom_fields_values[0].values.length;
+                console.log(databd.custom_fields_values[0].values.length);
+                for ($j = 0; $j < $kolnomercompaniesBD; $j++) {
+                  $telcompaniesBD = ((databd.custom_fields_values[0].values[$j].value).replace(/^[0-9]+\.[0-9]$/i)).substr(1);
+                  console.log($telcompaniesBD);
+                  if ($telcompaniesBD == $telcompaniesxolodka) {
+                    console.log($allLeadsBD[$j]);
+                    $count += 1;
+                  } else {
+                    console.log("FALSE");
+                  }
+                }
+              });
+            }
+          }
+        };
+        console.log($count);
         console.log('init');
-
         AMOCRM.addNotificationCallback(self.get_settings().widget_code, function (data) {
           console.log(data)
         });

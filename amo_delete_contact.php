@@ -1,10 +1,10 @@
 <?php
-//    header('Content-Type: text/html; charset=utf-8');
+    header('Content-Type: text/html; charset=utf-8');
 
 // данные amo
-$subdomain = 'emomalisharifov98yandexru';
-$login = 'emomali.sharifov98@yandex.ru';
-$hash = 'aba270c13df8682df545519e6dc93135e6c787ff';
+$subdomain = 'tema24';
+$login = '666@2810101.ru';
+$hash = 'ced8d14801596715d8b197956c30b6be13612412';
 $user=[
     'USER_LOGIN'=>$login,
     'USER_HASH'=>$hash
@@ -13,6 +13,7 @@ $user=[
 amoAuth($user, $subdomain);
 
 p(allLeads($subdomain));
+//p(addTaksToLeads(1742061,$subdomain));
 //    p(allLeads($subdomain));
 //p(delContact(355627,$subdomain));
 
@@ -92,70 +93,116 @@ function linkLeadsToContact($idcontact,$idleads,$subdomain)
     getError($code);
     var_dump($allleads);
 }
+//// Добавить задачу к сделке КЦ:
+//function addTaksToLeads($idleadks,$subdomain)
+//{
+//    var_dump("дошел до addTaksToLeads ");
+//    $data =array(array(
+//        "responsible_user_id" => '19158061',
+//        "text"=> "Проанализировать склейку",
+//        "complete_till"=> 1616561100,
+//        "entity_id"=> $idleadks,
+//        "entity_type"=> "leads",
+//        "task_type_id"=> ,
+//        "request_id"=> "example"
+//
+//    ));
+//    #Формируем ссылку для запроса
+//    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/tasks';
+//    $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
+//    #Устанавливаем необходимые опции для сеанса cURL
+//    curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+//    curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
+//    curl_setopt($curl,CURLOPT_URL,$link);
+//    curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'POST');
+//    curl_setopt($curl,CURLOPT_POSTFIELDS,json_encode($data));
+//    curl_setopt($curl,CURLOPT_HTTPHEADER,array(
+//        'X-Requested-With: XMLHttpRequest',
+//    ));
+//    curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__FILE__).'/cookie.txt');
+//    curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__FILE__).'/cookie.txt');
+//    curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+//    curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+//
+//    $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+//    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+//    $allleads = json_decode($out, false);
+//    $arrid = array();
+//    curl_close($curl); #Завершаем сеанс cURL
+//    getError($code);
+//    var_dump($allleads);
+//}
 // Список сделок
 function allLeads($subdomain)
 {
-    #Формируем ссылку для запроса
-    $link='https://'.$subdomain.'.amocrm.ru/api/v2/leads';
-    $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
-    #Устанавливаем необходимые опции для сеанса cURL
-    curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
-    curl_setopt($curl,CURLOPT_USERAGENT,'amoCRM-API-client/1.0');
-    curl_setopt($curl,CURLOPT_URL,$link);
-    curl_setopt($curl,CURLOPT_CUSTOMREQUEST,'GET');
-    curl_setopt($curl,CURLOPT_HTTPHEADER,array(
-        'X-Requested-With: XMLHttpRequest',
-    ));
-    curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__FILE__).'/cookie.txt');
-    curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__FILE__).'/cookie.txt');
-    curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
-    curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+   for ($j = 0; $j <= 10; ++$j) {
+       #Формируем ссылку для запроса
+       $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads';
+       $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
+       #Устанавливаем необходимые опции для сеанса cURL
+       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+       curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+       curl_setopt($curl, CURLOPT_URL, $link);
+       curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+       curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+           'X-Requested-With: XMLHttpRequest',
+       ));
+       curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
+       curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
+       curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+       curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
 
-    $out=curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
-    $code=curl_getinfo($curl,CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
-    $allleads = json_decode($out, false);
-    $arrid = array();
-    curl_close($curl); #Завершаем сеанс cURL
-    getError($code);
-    for ($j = 0; $j <= count($allleads->_embedded->items); ++$j) {
-        //        for ($i = 0; $i < count($rr->_embedded->contacts); ++$i) {
-        if (($allleads->_embedded->items[$j]->status_id == 38841718) && ($allleads->_embedded->items[$j]->pipeline_id == 4112143)) {
-            $idleadxolod = $allleads->_embedded->items[$j];
-            if ($allleads->_embedded->items[$j]->contacts->id[0] != null) {
-                $idcontactxolod = (int)$allleads->_embedded->items[$j]->contacts->id[0];
-                var_dump($idcontactxolod."<pre/>");
-                $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/contacts';
-                $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
-                #Устанавливаем необходимые опции для сеанса cURL
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
-                curl_setopt($curl, CURLOPT_URL, $link);
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
-                curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-                    'X-Requested-With: XMLHttpRequest',
-                ));
-                curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
-                curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
-                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-                $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
-                $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
-                $contact = json_decode($out, false);
-                curl_close($curl); #Завершаем сеанс cURL
-                getError($code);
-                for ($i = 0; $i <= count($contact->_embedded->items); ++$i) {
-                    if ($contact->_embedded->items[$i]->id == $idcontactxolod) {
-                        $telxolod =  (substr(preg_replace("/[^0-9]/", '', $contact->_embedded->items[$i]->custom_fields[0]->values[0]->value),1));
-                        var_dump($telxolod);
-                        var_dump('Номер телефона');
-                        allLeadsKS($telxolod,$idcontactxolod,$idleadxolod,$subdomain);
-                    }
-                }
-
-            }
-        }
-
-    }
+       $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+       $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+       $allleads = json_decode($out, false);
+       $arrid = array();
+       curl_close($curl); #Завершаем сеанс cURL
+       getError($code);
+       echo '<pre>';
+       var_dump($allleads);
+       var_dump(count($allleads->_embedded->items));
+   }
+//    for ($j = 0; $j <= count($allleads->_embedded->items); ++$j) {
+//        //        for ($i = 0; $i < count($rr->_embedded->contacts); ++$i) {
+//        if (($allleads->_embedded->items[$j]->status_id == 38437138) && ($allleads->_embedded->items[$j]->pipeline_id == 4053727)) {
+//            $idleadxolod = $allleads->_embedded->items[$j];
+//            if ($allleads->_embedded->items[$j]->contacts->id[0] != null) {
+//                $idcontactxolod = (int)$allleads->_embedded->items[$j]->contacts->id[0];
+//                var_dump( $idleadxolod = $allleads->_embedded->items[$j]);
+//                $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/companies';
+//                $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
+//                #Устанавливаем необходимые опции для сеанса cURL
+//                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//                curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+//                curl_setopt($curl, CURLOPT_URL, $link);
+//                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+//                curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+//                    'X-Requested-With: XMLHttpRequest',
+//                ));
+//                curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
+//                curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
+//                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+//                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+//                $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+//                $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+//                $contact = json_decode($out, false);
+//                curl_close($curl); #Завершаем сеанс cURL
+//                getError($code);
+//                var_dump("Comp");
+//                var_dump("$contact");
+//                for ($i = 0; $i <= count($contact->_embedded->items); ++$i) {
+//                    if ($contact->_embedded->items[$i]->id == $idcontactxolod) {
+//                        $telxolod =  (substr(preg_replace("/[^0-9]/", '', $contact->_embedded->items[$i]->custom_fields[0]->values[0]->value),1));
+//                        var_dump($telxolod);
+//                        var_dump('Номер телефона');
+//                        allLeadsKS($telxolod,$idcontactxolod,$idleadxolod,$subdomain);
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//    }
     return true;
 }
 // Список леадс
@@ -224,9 +271,12 @@ function allLeadsKS($telxolod,$idcontactxolod,$idleadxolod,$subdomain)
                             var_dump("telxolod == telks");
                             var_dump($idcontactks);
                             var_dump($idleadxolod);
-                            delContact($idleadxolod->contacts->id[0], $subdomain);
-                            linkLeadsToContact($idcontactks, $idleadxolod->id, $subdomain);
-                            var_dump("linkLeadsToContact Это был");
+//                            delContact($idleadxolod->contacts->id[0], $subdomain);
+//                            linkLeadsToContact($idcontactks, $idleadxolod->id, $subdomain);
+//                            var_dump("linkLeadsToContact Это был");
+//                            var_dump("добавляем задачу ");
+//                            var_dump($idleadks);
+//                            addTaksToLeads($idleadks,$subdomain);
 
                         }
 
@@ -234,6 +284,7 @@ function allLeadsKS($telxolod,$idcontactxolod,$idleadxolod,$subdomain)
                 }
             }
         }
+
         //    #Формируем ссылку для запроса
         //    $link='https://'.$subdomain.'.amocrm.ru/api/v4/contacts';
         //    $curl=curl_init(); #Сохраняем дескриптор сеанса cURL
