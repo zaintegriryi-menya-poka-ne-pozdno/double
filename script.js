@@ -88,29 +88,27 @@ define(['jquery', 'underscore', 'twigjs'], function ($, _, Twig) {
         });
 
         function checkNomerXolodka($allLeadsXolodka,$allLeadsBD) {
-          console.log("Это checkNomerBD");
-          console.log($allLeadsXolodka.length);
-          console.log($allLeadsXolodka);
-          for ($i = 0; $i < 20; $i++) {
+          for ($i = 0; $i < $allLeadsXolodka.length; $i++) {
             if (($allLeadsXolodka[$i]._embedded.companies.length != "0") || ($allLeadsXolodka[$i]._embedded.companies.length != " ")) {
               $idcompaniesxolodka = $allLeadsXolodka[$i]._embedded.companies[0].id;
+              $idLeadsXolodka = $allLeadsXolodka[$i].id;
               $.get("/api/v4/companies/" + $idcompaniesxolodka + "").done(function (data) {
                 $kolnomercompanies = data.custom_fields_values[0].values.length;
                 for ($j = 0; $j < $kolnomercompanies; $j++) {
                   $telcompaniesxolodka = ((data.custom_fields_values[0].values[$j].value).replace(/^[0-9]+\.[0-9]$/i)).substr(1);
                   console.log($telcompaniesxolodka);
-                  checkNomerBD($telcompaniesxolodka, $idcompaniesxolodka,$allLeadsBD);
+                  console.log("Номер комп воронка Холодка");
+                  checkNomerBD($telcompaniesxolodka, $idcompaniesxolodka,$allLeadsBD,$idLeadsXolodka);
                 }
               });
             }
           }
         };
-        function checkNomerBD($telcompaniesxolodka,$idcompaniesxolodka,$allLeadsBD){
-          for ($i = 0; $i < 20; $i++) {
-            console.log($allLeadsBD[$i]._embedded);
+        function checkNomerBD($telcompaniesxolodka,$idcompaniesxolodka,$allLeadsBD,$idLeadsXolodka){
+          for ($i = 0; $i < $allLeadsBD.length; $i++) {
             if (($allLeadsBD[$i]._embedded.companies.length != "0") || ($allLeadsBD[$i]._embedded.companies.length != " ")) {
               $idcompaniesBD = $allLeadsBD[$i]._embedded.companies[0].id;
-              console.log($idcompaniesBD);
+              $idLeadsBD = $allLeadsBD[$i].id;
               $.get("/api/v4/companies/" + $idcompaniesBD + "").done(function (databd) {
                 console.log(databd);
                 $kolnomercompaniesBD = databd.custom_fields_values[0].values.length;
@@ -118,9 +116,10 @@ define(['jquery', 'underscore', 'twigjs'], function ($, _, Twig) {
                 for ($j = 0; $j < $kolnomercompaniesBD; $j++) {
                   $telcompaniesBD = ((databd.custom_fields_values[0].values[$j].value).replace(/^[0-9]+\.[0-9]$/i)).substr(1);
                   console.log($telcompaniesBD);
+                  console.log("Номер комп наш БД");
                   if ($telcompaniesBD == $telcompaniesxolodka) {
-                    console.log($allLeadsBD[$j]);
-                    $count += 1;
+                    console.log("telcompaniesBD == telcompaniesxolodka");
+                    AddLeads($idcompaniesxolodka,$idLeadsBD,$idLeadsXolodka);
                   } else {
                     console.log("FALSE");
                   }
@@ -129,7 +128,46 @@ define(['jquery', 'underscore', 'twigjs'], function ($, _, Twig) {
             }
           }
         };
-        console.log($count);
+        function  AddLeads($idcompaniesxolodka,$idLeadsBD,$idLeadsXolodka) {
+          let data = [
+            {
+              "to_entity_id": $idLeadsBD,
+              "to_entity_type": "leads",
+            }
+          ]
+          $.ajax({
+            url: "/api/v4/companies/" + $idcompaniesxolodka + "/link",
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data){console.log(data);},
+            failure: function(errMsg) {
+              console.log(errMsg);
+            }
+          });
+          changeEtLeads($idLeadsXolodka);
+        };
+        function changeEtLeads($idLeadsXolodka){
+          let data = [
+            {
+              "id" : $idLeadsXolodka,
+              "pipeline_id": 4053727,
+              "status_id": 38899543,
+            }
+          ]
+          $.ajax({
+            url: "/api/v4/leads",
+            type: 'PATCH',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data){console.log(data);},
+            failure: function(errMsg) {
+              console.log(errMsg);
+            }
+          });
+        };
         console.log('init');
         AMOCRM.addNotificationCallback(self.get_settings().widget_code, function (data) {
           console.log(data)

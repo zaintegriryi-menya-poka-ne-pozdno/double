@@ -272,7 +272,7 @@ function allLeadsKS($telxolod,$idcontactxolod,$idleadxolod,$subdomain)
                             var_dump($idcontactks);
                             var_dump($idleadxolod);
 //                            delContact($idleadxolod->contacts->id[0], $subdomain);
-//                            linkLeadsToContact($idcontactks, $idleadxolod->id, $subdomain);
+                            linkLeadsToContact($idcontactks, $idleadxolod->id, $subdomain);
 //                            var_dump("linkLeadsToContact Это был");
 //                            var_dump("добавляем задачу ");
 //                            var_dump($idleadks);
