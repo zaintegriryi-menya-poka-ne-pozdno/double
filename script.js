@@ -88,7 +88,7 @@ define(['jquery', 'underscore', 'twigjs'], function ($, _, Twig) {
         });
 
         function checkNomerXolodka($allLeadsXolodka,$allLeadsBD) {
-          for ($i = 0; $i < $allLeadsXolodka.length; $i++) {
+          for ($i = 0; $i < 3; $i++) {
             if (($allLeadsXolodka[$i]._embedded.companies.length != "0") || ($allLeadsXolodka[$i]._embedded.companies.length != " ")) {
               $idcompaniesxolodka = $allLeadsXolodka[$i]._embedded.companies[0].id;
               $idLeadsXolodka = $allLeadsXolodka[$i].id;

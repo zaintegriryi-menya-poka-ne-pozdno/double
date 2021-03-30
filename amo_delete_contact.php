@@ -278,7 +278,7 @@ function allLeads($subdomain)
     var_dump(count($allLeadsXolodka));
 
 
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=1&limit=250&filter[statuses][0][pipeline_id]=2279392';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=1&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -302,7 +302,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=2&limit=250&filter[statuses][0][pipeline_id]=2279392';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=2&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -325,7 +325,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=3&limit=250&filter[statuses][0][pipeline_id]=2279392';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=3&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -348,7 +348,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=4&limit=250&filter[statuses][0][pipeline_id]=2279392';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=4&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -371,7 +371,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=5&limit=250&filter[statuses][0][pipeline_id]=2279392';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=5&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -394,7 +394,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=6&limit=250&filter[statuses][0][pipeline_id]=2279392';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=6&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -417,7 +417,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=1&limit=250&filter[statuses][0][pipeline_id]=2279395';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=7&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -440,7 +440,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=2&limit=250&filter[statuses][0][pipeline_id]=2279395';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=8&limit=250&filter[pipeline_id]=2279392';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -463,7 +463,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=3&limit=250&filter[statuses][0][pipeline_id]=2279395';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=1&limit=250&filter[pipeline_id]=2279395';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -486,7 +486,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=4&limit=250&filter[statuses][0][pipeline_id]=2279395';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=2&limit=250&filter[pipeline_id]=2279395';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -509,7 +509,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=5&limit=250&filter[statuses][0][pipeline_id]=2279395';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=3&limit=250&filter[pipeline_id]=2279395';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -532,7 +532,7 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=6&limit=250&filter[statuses][0][pipeline_id]=2279395';
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=4&limit=250&filter[pipeline_id]=2279395';
     $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
     #Устанавливаем необходимые опции для сеанса cURL
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -555,6 +555,99 @@ function allLeads($subdomain)
     for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
         array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
     }
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=5&limit=250&filter[pipeline_id]=2279395';
+    $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
+    #Устанавливаем необходимые опции для сеанса cURL
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+    curl_setopt($curl, CURLOPT_URL, $link);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'X-Requested-With: XMLHttpRequest',
+    ));
+    curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+
+    $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+    $allleads = json_decode($out, false);
+    curl_close($curl); #Завершаем сеанс cURL
+    getError($code);
+    for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
+        array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
+    }
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=6&limit=250&filter[pipeline_id]=2279395';
+    $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
+    #Устанавливаем необходимые опции для сеанса cURL
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+    curl_setopt($curl, CURLOPT_URL, $link);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'X-Requested-With: XMLHttpRequest',
+    ));
+    curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+
+    $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+    $allleads = json_decode($out, false);
+    curl_close($curl); #Завершаем сеанс cURL
+    getError($code);
+    for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
+        array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
+    }
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=7&limit=250&filter[pipeline_id]=2279395';
+    $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
+    #Устанавливаем необходимые опции для сеанса cURL
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+    curl_setopt($curl, CURLOPT_URL, $link);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'X-Requested-With: XMLHttpRequest',
+    ));
+    curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+
+    $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+    $allleads = json_decode($out, false);
+    curl_close($curl); #Завершаем сеанс cURL
+    getError($code);
+    for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
+        array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
+    }
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads?page=8&limit=250&filter[pipeline_id]=2279395';
+    $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
+    #Устанавливаем необходимые опции для сеанса cURL
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+    curl_setopt($curl, CURLOPT_URL, $link);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        'X-Requested-With: XMLHttpRequest',
+    ));
+    curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+
+    $out = curl_exec($curl); #Инициируем запрос к API и сохраняем ответ в переменную
+    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE); #Получим HTTP-код ответа сервера
+    $allleads = json_decode($out, false);
+    curl_close($curl); #Завершаем сеанс cURL
+    getError($code);
+    for ($j = 0; $j < count($allleads->_embedded->leads); ++$j){
+        array_push($allLeadsBD, $allleads->_embedded->leads[$j]);
+    }
+    var_dump($allLeadsBD[0]);
     var_dump(count($allLeadsBD));
        echo '<pre/>';
 //    var_dump($allLeadsBD);
@@ -605,7 +698,9 @@ function allLeads($subdomain)
 }
 function checkNomerXolodka($allLeadsXolodka,$allLeadsBD,$subdomain) {
     for ($i = 0; $i < count($allLeadsXolodka); $i++) {
+        var_dump($allLeadsXolodka[$i]->_embedded->companies);
         if ((count($allLeadsXolodka[$i]->_embedded->companies) != 0) || (count($allLeadsXolodka[$i]->_embedded->companies) != " ")) {
+            var_dump($i);
             $idcompaniesxolodka = $allLeadsXolodka[$i]->_embedded->companies[0]->id;
             $idLeadsXolodka = $allLeadsXolodka[$i]->id;
             $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/companies/'.$idcompaniesxolodka.'';
@@ -628,7 +723,6 @@ function checkNomerXolodka($allLeadsXolodka,$allLeadsBD,$subdomain) {
             $allleads = json_decode($out, false);
             curl_close($curl); #Завершаем сеанс cURL
             getError($code);
-            var_dump($i);
             for ($j = 0; $j < count($allleads->custom_fields_values[0]->values); ++$j) {
                 $telcompaniesxolodka = substr(preg_replace("/[^0-9]/", '', $allleads->custom_fields_values[0]->values[$j]->value), 1);
                 var_dump($telcompaniesxolodka);
@@ -637,18 +731,18 @@ function checkNomerXolodka($allLeadsXolodka,$allLeadsBD,$subdomain) {
                 var_dump(" idcompaniesxolodka");
                 var_dump($idLeadsXolodka);
                 var_dump(" idLeadsXolodka");
-//                checkNomerBD($telcompaniesxolodka, $idcompaniesxolodka,$allLeadsBD,$idLeadsXolodka,$subdomain);
+                checkNomerBD($telcompaniesxolodka, $idcompaniesxolodka,$allLeadsBD,$idLeadsXolodka,$subdomain);
             }
 
         }
     }
 };
 function checkNomerBD($telcompaniesxolodka,$idcompaniesxolodka,$allLeadsBD,$idLeadsXolodka,$subdomain){
-//    count($allLeadsBD)
+    //count($allLeadsBD)
     //142 УСПЕШНО РЕАЛИЗОВАНО
     //143 ЗАКРЫТО И НЕ РЕАЛИЗОВАНО
     for ($i = 0; $i < count($allLeadsBD); $i++) {
-        if (count($allLeadsBD[$i]->_embedded->companies) != 0 || (count($allLeadsBD[$i]->_embedded->companies) != " ")) {
+        if ((count($allLeadsBD[$i]->_embedded->companies)) != 0 || (count($allLeadsBD[$i]->_embedded->companies) != " ")) {
             $idcompaniesBD = $allLeadsBD[$i]->_embedded->companies[0]->id;
             $idLeadsBD = $allLeadsBD[$i]->id;
             $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/companies/'.$idcompaniesBD.'';
@@ -674,6 +768,7 @@ function checkNomerBD($telcompaniesxolodka,$idcompaniesxolodka,$allLeadsBD,$idLe
             if ((count($allleads->custom_fields_values[0]->values) != 0) || (count($allleads->custom_fields_values[0]->values) != " ")) {
                 for ($j = 0; $j < count($allleads->custom_fields_values[0]->values); ++$j) {
                     $telcompaniesBD = substr(preg_replace("/[^0-9]/", '', $allleads->custom_fields_values[0]->values[$j]->value), 1);
+                    var_dump($allLeadsBD[$i]->id);
                     var_dump($telcompaniesBD);
                     var_dump("Номер комп воронка КЦ");
                     if ($telcompaniesBD == $telcompaniesxolodka) {
@@ -689,7 +784,8 @@ function checkNomerBD($telcompaniesxolodka,$idcompaniesxolodka,$allLeadsBD,$idLe
                 }
             }
             else{
-                var_dump("Компания не имеет номер телефона");
+                var_dump($allLeadsBD[$i]->id);
+                var_dump("Компания не имеет номер телефона КЦ");
             }
         }
         else{
@@ -697,6 +793,7 @@ function checkNomerBD($telcompaniesxolodka,$idcompaniesxolodka,$allLeadsBD,$idLe
             var_dump("Сделка не имеет компанию КЦ");
         }
     }
+
 };
 function  AddLeads($idcompaniesxolodka,$idLeadsBD,$idLeadsXolodka,$subdomain) {
     var_dump("дошел до addTaksToLeads ");
